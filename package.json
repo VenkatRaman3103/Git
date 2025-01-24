@@ -1,0 +1,19 @@
+{
+	"name": "@codecrafters/build-your-own-git",
+	"version": "1.0.0",
+	"description": "Build your own Git challenge, from CodeCrafters",
+	"main": "main.js",
+	"scripts": {
+		"dev": "node app/main.js",
+		"lint": "eslint ."
+	},
+	"keywords": [
+		"build-your-own-x"
+	],
+	"author": "",
+	"license": "MIT",
+	"devDependencies": {
+		"eslint": "^9.18.0",
+		"prettier": "^3.4.2"
+	}
+}
