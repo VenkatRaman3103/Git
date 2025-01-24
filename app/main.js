@@ -33,7 +33,7 @@ switch (command) {
 			const decompressed = zlib.inflateSync(fileContent)
 
 			const [header, content] = decompressed.toString().split('\0')
-			console.log(content)
+			process.stdout.write(content)
 		}
 		break
 
