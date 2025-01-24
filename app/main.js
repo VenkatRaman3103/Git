@@ -1,30 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-
-// // You can use print statements as follows for debugging, they'll be visible when running tests.
-// console.error('Logs from your program will appear here!')
-//
-// // Uncomment this block to pass the first stage
-// const command = process.argv[2]
-//
-// switch (command) {
-// 	case 'init':
-// 		createGitDirectory()
-// 		break
-// 	default:
-// 		throw new Error(`Unknown command ${command}`)
-// }
-//
-// function createGitDirectory() {
-// 	fs.mkdirSync(path.join(process.cwd(), '.git'), { recursive: true })
-// 	fs.mkdirSync(path.join(process.cwd(), '.git', 'objects'), {
-// 		recursive: true,
-// 	})
-// 	fs.mkdirSync(path.join(process.cwd(), '.git', 'refs'), { recursive: true })
-//
-// 	fs.writeFileSync(path.join(process.cwd(), '.git', 'HEAD'), 'ref: refs/heads/main\n')
-// 	console.log('Initialized git directory')
-// }
+import zlib from 'zlib'
 
 const command = process.argv[2]
 
@@ -38,9 +14,27 @@ function initializeGitDirectory() {
 	console.log('Initialized git directory')
 }
 
+// get the file
+
 switch (command) {
 	case 'init':
 		initializeGitDirectory()
+		break
+
+	case 'cat-file':
+		const flag = process.argv[3]
+		const hash = process.argv[4]
+
+		if (flag == '-p') {
+			const folderPath = path.join(workingDir, '.git', 'objects', hash.slice(0, 2))
+
+			const fileContent = fs.readFileSync(path.join(folderPath, hash.slice(2)))
+
+			const decompressed = zlib.inflateSync(fileContent)
+
+			const [header, content] = decompressed.toString().split('\0')
+			console.log(content)
+		}
 		break
 
 	default:

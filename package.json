@@ -1,11 +1,13 @@
 {
 	"name": "@codecrafters/build-your-own-git",
+	"type": "module",
 	"version": "1.0.0",
 	"description": "Build your own Git challenge, from CodeCrafters",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node app/main.js",
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"start": "node ~/Code/Projects/Git/codecrafters-git-javascript/app/main.js"
 	},
 	"keywords": [
 		"build-your-own-x"
